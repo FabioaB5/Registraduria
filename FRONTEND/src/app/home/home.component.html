@@ -1,0 +1,34 @@
+<div class="container mt-3 text-center">
+    <h1>{{title}}</h1>
+    <p>
+        Bienvenidos a mi tiendita.  
+        Siga mi doña, mire sin compromiso
+    </p>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a 
+            [ngClass]="{'active': tab == 'products'}"
+            class="nav-link" 
+            (click)="onTabSelected('products')">Productos</a>
+        </li>
+        <li class="nav-item">
+            <a 
+            [ngClass]="{'active': tab == 'new-product'}"
+            class="nav-link" 
+            (click)="onTabSelected('new-product')">Crear producto</a>
+        </li>
+    </ul>
+    <div class="mt-2">
+        <app-products 
+        [products]="productsFromHome"
+        *ngIf="tab == 'products'"></app-products>
+        <app-product-form 
+        (createProduct)="onProductCreated($event)"
+        *ngIf="tab == 'new-product'"></app-product-form>
+        <app-contact-info *ngIf="tab == 'contact-info'"></app-contact-info>
+    </div>
+</div>
+
+
